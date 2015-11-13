@@ -1,5 +1,6 @@
 package amortissements;
 
+import java.lang.Math;
 /**
  * Représente un crédit.
  */
@@ -9,6 +10,14 @@ public class Credit
 	public final static int AMORTISSEMENT_CONSTANTS = 1,
 			ANNUITES_CONSTANTES = 2;
 
+	int typeCredit;
+	double annuiteMax;
+	double montantEmprunt;
+	double taux;
+	int duree;
+	
+	
+	
 	/**
 	 * Créée un crédit.
 	 */
@@ -16,7 +25,11 @@ public class Credit
 	Credit (int typeCredit, double montantEmprunte, double annuiteMaximale,
 			double taux, int duree)
 	{
-		// TODO à compléter
+		this.typeCredit = typeCredit;
+		this.annuiteMax = annuiteMaximale;
+		this.montantEmprunt = montantEmprunte;
+		this.taux = taux;
+		this.duree = duree;
 	}
 	
 	/**
@@ -25,8 +38,7 @@ public class Credit
 	
 	public double montantEmprunte()
 	{
-		// TODO à compléter
-		return 0;
+		return montantEmprunt;
 	}
 	
 	/**
@@ -35,8 +47,7 @@ public class Credit
 	
 	public double annuiteMaximale()
 	{
-		// TODO à compléter
-		return 0;
+		return annuiteMax;
 	}
 	
 	/**
@@ -45,8 +56,7 @@ public class Credit
 	
 	public double taux()
 	{
-		// TODO à compléter
-		return 0;
+		return taux;
 	}
 	
 	/**
@@ -55,8 +65,7 @@ public class Credit
 	
 	public int duree()
 	{
-		// TODO à compléter
-		return 0;
+		return duree;
 	}
 	
 	/**
@@ -77,8 +86,8 @@ public class Credit
 			double montantEmprunte, double annuiteMaximale,
 			int duree)
 	{
-		// TODO à compléter
-		return null;
+		Credit cred = new Credit(typeCredit,montantEmprunte,annuiteMaximale, (annuiteMaximale-(montantEmprunte/duree)*100)/montantEmprunte,duree);
+		return cred;
 	}
 	
 	/**
@@ -90,6 +99,7 @@ public class Credit
 			double taux)
 	{
 		// TODO à compléter
+		
 		return null;
 	}
 
@@ -113,7 +123,19 @@ public class Credit
 	public static Credit calculeAnuiteMaximale(int typeCredit, 
 			double montantEmprunte,	double taux, int duree)
 	{
-		// TODO à compléter
-		return null;
+		double anuite;
+		
+		if (typeCredit == ANNUITES_CONSTANTES)
+		{
+			anuite = montantEmprunte*(taux/(1- Math.pow((1+taux), (double)-duree)));
+		}
+		else
+		{
+			anuite = montantEmprunte/duree+montantEmprunte/100*taux;
+		}
+		
+		return new Credit(typeCredit, montantEmprunte, anuite , taux, duree);
 	}
+	
+	
 }
