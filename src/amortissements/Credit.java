@@ -74,14 +74,17 @@ public class Credit
 	
 	public TableauAmortissement getTableauAmortissement()
 	{
-		// TODO Ã  complÃ©ter.
-		return null;
+		return new TableauAmortissement(this);
 	}
 	
 	/**
 	 * Retourne un crÃ©dit en calculant automatiquement le taux.
+	 * @param typeCredit
+	 * @param montantEmprunte
+	 * @param annuiteMaximale
+	 * @param duree
+	 * @return Le credit cree avec le taux calcule
 	 */
-	
 	public static Credit calculeTaux(int typeCredit, 
 			double montantEmprunte, double annuiteMaximale,
 			int duree)
@@ -147,9 +150,13 @@ public class Credit
 	}
 	
 	/**
-	 * Retourne un crédit en calculant automatiquement la durÃ©e.
+	 * Retourne un crédit en calculant automatiquement la durée.
+	 * @param typeCredit
+	 * @param montantEmprunte
+	 * @param annuiteMaximale
+	 * @param taux
+	 * @return retourne le credit crée avec le montant calculé
 	 */
-	
 	public static Credit calculeDuree(int typeCredit, 
 			double montantEmprunte, double annuiteMaximale,
 			double taux)
@@ -168,6 +175,16 @@ public class Credit
 		return new Credit(typeCredit, montantEmprunte, annuiteMaximale, taux, duree);
 	}
 	
+	/**
+	 * calcule par dichotomie la duree
+	 * @param montantEmprunte
+	 * @param annuiteMaximal
+	 * @param duree
+	 * @param taux
+	 * @param min
+	 * @param max
+	 * @return la duree
+	 */
 	private static int calcAnuitConstanteDichDuree(double montantEmprunte, double annuiteMaximal, int duree, 
 			double taux, double min, double max)
 	{
@@ -193,6 +210,14 @@ public class Credit
 	 * 	qu'il est possible d'emprunter.
 	 */
 	
+	/**
+	 * Retourne un credit en calculant automatiquement la valeur de l'emprunt
+	 * @param typeCredit
+	 * @param annuiteMaximale
+	 * @param taux
+	 * @param duree
+	 * @return le credit cree avec la valeur calculé
+	 */
 	public static Credit calculeMontantEmprunte(int typeCredit, 
 			double annuiteMaximale,	double taux, int duree)
 	{
@@ -210,6 +235,16 @@ public class Credit
 		return new Credit(typeCredit, montantEmprunte, annuiteMaximale, taux, duree);
 	}
 	
+	/**
+	 * Calcule par dichotomi le montant du prèt
+	 * @param montantEmprunte
+	 * @param annuiteMaximal
+	 * @param duree
+	 * @param taux
+	 * @param min
+	 * @param max
+	 * @return leMontant de du pret calculé
+	 */
 	private static int calcAnuitConstanteDichMontant(double montantEmprunte, double annuiteMaximal, int duree, 
 			double taux, double min, double max)
 	{

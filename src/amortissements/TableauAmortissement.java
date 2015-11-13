@@ -9,10 +9,10 @@ public class TableauAmortissement
 	/**
 	 * Crée le tableau d'amortissement du crédit passé en paramètre.
 	 */
-	
+	Ligne[] tabAmor;
 	public TableauAmortissement(Credit credit)
 	{
-		// TODO à compléter.
+		this.tabAmor = new Ligne[credit.duree];
 	}
 	
 	/**
@@ -21,8 +21,7 @@ public class TableauAmortissement
 	
 	public int getNbLignes()
 	{
-		// TODO à compléter.
-		return 0;
+		return tabAmor.length;
 	}
 	
 	/**
@@ -32,8 +31,7 @@ public class TableauAmortissement
 	
 	public Ligne getLigne(int i)
 	{
-		// TODO à compléter.
-		return null;		
+		return tabAmor[i];		
 	}
 	
 	/**

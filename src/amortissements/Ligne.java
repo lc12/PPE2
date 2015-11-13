@@ -6,6 +6,8 @@ package amortissements;
 
 public class Ligne 
 {
+	int annee;
+	double capitalInitial, interets, amortissements, annuite, capitalFinal;
 	/**
 	 * Crée une ligne à partir des valeurs passées en paramètres.
 	 */
@@ -13,7 +15,12 @@ public class Ligne
 	Ligne(int annee, double capitalInitial, double interets, 
 			double amortissements, double annuite, double capitalFinal)
 	{
-		// TODO à compléter.
+		this.annee = annee;
+		this.capitalInitial = capitalInitial;
+		this.interets = interets;
+		this.amortissements = amortissements;
+		this.annuite = annuite;
+		this.capitalFinal = capitalFinal;
 	}
 
 	/**
@@ -24,7 +31,7 @@ public class Ligne
 	public int getAnnee()
 	{
 		// TODO à compléter.
-		return 0;
+		return annee;
 	}
 	
 	/**
@@ -35,7 +42,7 @@ public class Ligne
 	public double getCapitalInitial()
 	{
 		// TODO à compléter.
-		return 0;
+		return capitalInitial;
 	}
 	
 	/**
@@ -45,7 +52,7 @@ public class Ligne
 	public double getInterets()
 	{
 		// TODO à compléter.
-		return 0;
+		return interets;
 	}
 
 	/**
