@@ -196,8 +196,38 @@ public class Credit
 	public static Credit calculeMontantEmprunte(int typeCredit, 
 			double annuiteMaximale,	double taux, int duree)
 	{
-		// TODO a completer
-		return null;
+		double montantEmprunte;
+		
+		if (typeCredit == ANNUITES_CONSTANTES)
+		{
+			montantEmprunte = calcAnuitConstanteDichMontant(5000000, annuiteMaximale, duree, taux, 1, 1000000);
+		}
+		else
+		{
+			montantEmprunte = annuiteMaximale/(1/duree+taux);
+		}
+		
+		return montantEmprunte;
+	}
+	
+	private static int calcAnuitConstanteDichMontant(double montantEmprunte, double annuiteMaximal, int duree, 
+			double taux, double min, double max)
+	{
+		if (!precisionOk(montantEmprunte, annuiteMaximal, duree, taux))
+		{
+			if (montantEmprunte*(taux/(1- Math.pow((1+taux), (double)-duree))) > annuiteMaximal)
+			{
+				return calcAnuitConstanteDichMontant( montantEmprunte/2, annuiteMaximal, duree, taux , min, duree-1);
+			}
+			else
+			{
+				return calcAnuitConstanteDichMontant( montantEmprunte+(max-duree/2), annuiteMaximal, duree, taux, taux+1, max);
+			}
+		}
+		else
+		{
+			return duree;
+		}
 	}
 
 	/**
