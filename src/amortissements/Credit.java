@@ -86,55 +86,140 @@ public class Credit
 			double montantEmprunte, double annuiteMaximale,
 			int duree)
 	{
-		Credit cred = new Credit(typeCredit,montantEmprunte,annuiteMaximale, (annuiteMaximale-(montantEmprunte/duree)*100)/montantEmprunte,duree);
-		return cred;
+		double taux;
+		
+		if (typeCredit == ANNUITES_CONSTANTES)
+		{
+			taux = calcAnuitConstanteDichTaux(montantEmprunte, annuiteMaximale, duree, 50, 0, 100);
+		}
+		else
+		{
+			taux = (annuiteMaximale-(montantEmprunte/duree)*100)/montantEmprunte;
+		}
+		
+		return new Credit(typeCredit, montantEmprunte, annuiteMaximale, taux, duree);
 	}
 	
 	/**
-	 * Retourne un crédit en calculant automatiquement la durée.
+	 * Calcule par dichotomis le taux.
+	 * @param montantEmprunte
+	 * @param annuiteMaximal
+	 * @param duree
+	 * @param taux
+	 * @param min
+	 * @param max
+	 * @return le taux trouve
+	 */
+	private static double calcAnuitConstanteDichTaux(double montantEmprunte, double annuiteMaximal, int duree, 
+			double taux, double min, double max)
+	{
+		if (!precisionOk(montantEmprunte, annuiteMaximal, duree, taux))
+		{
+			if (montantEmprunte*(taux/(1- Math.pow((1+taux), (double)-duree))) > annuiteMaximal)
+			{
+				return calcAnuitConstanteDichTaux( montantEmprunte, annuiteMaximal, duree, taux/2 , min, taux-1);
+			}
+			else
+			{
+				return calcAnuitConstanteDichTaux( montantEmprunte, annuiteMaximal, duree, taux+(max-taux/2), taux+1, max);
+			}
+		}
+		else
+		{
+			return taux;
+		}
+	}
+	
+	/**
+	 * Test si la precision est acceptable pour l'etat des variable actuelle par
+	 * rapport aux resultats attendu.
+	 * @param montantEmprunte
+	 * @param annuiteMaximal
+	 * @param duree
+	 * @param taux
+	 * @return Un boolean true si la precision est ok sinon false
+	 */
+	private static boolean precisionOk(double montantEmprunte, double annuiteMaximal, int duree, 
+			double taux)
+	{
+		return (annuiteMaximal - montantEmprunte*(taux/(1- Math.pow((1+taux), (double)-duree))) < 0.10 
+				&& annuiteMaximal - montantEmprunte*(taux/(1- Math.pow((1+taux), (double)-duree))) > -0.10);
+	}
+	
+	/**
+	 * Retourne un cr�dit en calculant automatiquement la durée.
 	 */
 	
 	public static Credit calculeDuree(int typeCredit, 
 			double montantEmprunte, double annuiteMaximale,
 			double taux)
 	{
-		// TODO à compléter
+		int duree;
 		
-		return null;
+		if (typeCredit == ANNUITES_CONSTANTES)
+		{
+			duree = calcAnuitConstanteDichDuree(montantEmprunte, annuiteMaximale, 275, taux, 0, 550);
+		}
+		else
+		{
+			duree = (int)(montantEmprunte/(annuiteMaximale-(montantEmprunte/100*taux)));
+		}
+		
+		return new Credit(typeCredit, montantEmprunte, annuiteMaximale, taux, duree);
+	}
+	
+	private static int calcAnuitConstanteDichDuree(double montantEmprunte, double annuiteMaximal, int duree, 
+			double taux, double min, double max)
+	{
+		if (!precisionOk(montantEmprunte, annuiteMaximal, duree, taux))
+		{
+			if (montantEmprunte*(taux/(1- Math.pow((1+taux), (double)-duree))) > annuiteMaximal)
+			{
+				return calcAnuitConstanteDichDuree( montantEmprunte, annuiteMaximal, (int)duree/2, taux , min, duree-1);
+			}
+			else
+			{
+				return calcAnuitConstanteDichDuree( montantEmprunte, annuiteMaximal, (int)(duree+(max-duree/2)), taux, taux+1, max);
+			}
+		}
+		else
+		{
+			return duree;
+		}
 	}
 
 	/**
-	 * Retourne un crédit en calculant automatiquement le montant
+	 * Retourne un cr�edit en calculant automatiquement le montant
 	 * 	qu'il est possible d'emprunter.
 	 */
 	
 	public static Credit calculeMontantEmprunte(int typeCredit, 
 			double annuiteMaximale,	double taux, int duree)
 	{
-		// TODO à compléter
+		// TODO a completer
 		return null;
 	}
 
 	/**
-	 * Retourne un crédit en calculant automatiquement
-	 * l'annuité maximale.
+	 * Retourne un credit en calculant automatiquement
+	 * l'annuite maximale.
 	 */
 	
 	public static Credit calculeAnuiteMaximale(int typeCredit, 
 			double montantEmprunte,	double taux, int duree)
 	{
-		double anuite;
+		double annuite;
 		
 		if (typeCredit == ANNUITES_CONSTANTES)
 		{
-			anuite = montantEmprunte*(taux/(1- Math.pow((1+taux), (double)-duree)));
+			annuite = montantEmprunte*(taux/(1- Math.pow((1+taux), (double)-duree)));
 		}
 		else
 		{
-			anuite = montantEmprunte/duree+montantEmprunte/100*taux;
+			annuite = montantEmprunte/duree+montantEmprunte/100*taux;
 		}
 		
-		return new Credit(typeCredit, montantEmprunte, anuite , taux, duree);
+		return new Credit(typeCredit, montantEmprunte, annuite , taux, duree);
 	}
 	
 	
