@@ -207,7 +207,7 @@ public class Credit
 			montantEmprunte = annuiteMaximale/(1/duree+taux);
 		}
 		
-		return montantEmprunte;
+		return new Credit(typeCredit, montantEmprunte, annuiteMaximale, taux, duree);
 	}
 	
 	private static int calcAnuitConstanteDichMontant(double montantEmprunte, double annuiteMaximal, int duree, 
