@@ -150,12 +150,12 @@ public class Credit
 	}
 	
 	/**
-	 * Retourne un crédit en calculant automatiquement la durée.
+	 * Retourne un crï¿½dit en calculant automatiquement la durï¿½e.
 	 * @param typeCredit
 	 * @param montantEmprunte
 	 * @param annuiteMaximale
 	 * @param taux
-	 * @return retourne le credit crée avec le montant calculé
+	 * @return retourne le credit crï¿½e avec le montant calculï¿½
 	 */
 	public static Credit calculeDuree(int typeCredit, 
 			double montantEmprunte, double annuiteMaximale,
@@ -196,7 +196,7 @@ public class Credit
 			}
 			else
 			{
-				return calcAnuitConstanteDichDuree( montantEmprunte, annuiteMaximal, (int)(duree+(max-duree/2)), taux, taux+1, max);
+				return calcAnuitConstanteDichDuree( montantEmprunte, annuiteMaximal, (int)(duree+(max-duree/2)), taux, duree+1, max);
 			}
 		}
 		else
@@ -206,7 +206,7 @@ public class Credit
 	}
 
 	/**
-	 * Retourne un crÃedit en calculant automatiquement le montant
+	 * Retourne un crï¿½edit en calculant automatiquement le montant
 	 * 	qu'il est possible d'emprunter.
 	 */
 	
@@ -216,7 +216,7 @@ public class Credit
 	 * @param annuiteMaximale
 	 * @param taux
 	 * @param duree
-	 * @return le credit cree avec la valeur calculé
+	 * @return le credit cree avec la valeur calculï¿½
 	 */
 	public static Credit calculeMontantEmprunte(int typeCredit, 
 			double annuiteMaximale,	double taux, int duree)
@@ -236,14 +236,14 @@ public class Credit
 	}
 	
 	/**
-	 * Calcule par dichotomi le montant du prèt
+	 * Calcule par dichotomi le montant du prï¿½t
 	 * @param montantEmprunte
 	 * @param annuiteMaximal
 	 * @param duree
 	 * @param taux
 	 * @param min
 	 * @param max
-	 * @return leMontant de du pret calculé
+	 * @return leMontant de du pret calculï¿½
 	 */
 	private static int calcAnuitConstanteDichMontant(double montantEmprunte, double annuiteMaximal, int duree, 
 			double taux, double min, double max)
