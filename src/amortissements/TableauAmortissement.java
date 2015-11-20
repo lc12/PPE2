@@ -6,15 +6,17 @@ package amortissements;
 
 public class TableauAmortissement 
 {
-	/**
-	 * CrÃ©e le tableau d'amortissement du crÃ©dit passÃ© en paramÃ¨tre.
-	 */
 	Ligne[] tabAmor;
+	/**
+	 * Crée le tableau d'amortissement du crédit passé en paramètre.
+	 */
+	
 	public TableauAmortissement(Credit credit)
 	{
 		this.tabAmor = new Ligne[credit.duree];
 		Ligne laLigne = Ligne.premiereLigne(credit);
 		tabAmor[0] = laLigne;
+		
 		for (int i=1 ; i < tabAmor.length ; i++)
 		{
 			tabAmor[i] = laLigne.ligneSuivante(credit);
