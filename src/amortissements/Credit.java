@@ -174,6 +174,7 @@ public class Credit
 			double taux, double min, double max)
 	{
 		int duree = (int)((min+max)/2);
+		System.out.println("duree:"+duree);
 		if (!precisionOk(montantEmprunte, annuiteMaximal, duree, taux))
 		{
 			if (montantEmprunte*taux/(1- Math.pow(1+taux, (double)-duree)) < annuiteMaximal)
@@ -235,7 +236,7 @@ public class Credit
 			double taux, double min, double max)
 	{
 		double montantEmprunte = (min+max)/2;
-		System.out.println(montantEmprunte);
+		
 		if (!precisionOk(montantEmprunte, annuiteMaximal, duree, taux))
 		{
 			if (montantEmprunte*taux/(1- Math.pow(1+taux, (double)-duree)) > annuiteMaximal)
@@ -288,8 +289,9 @@ public class Credit
 			double taux)
 	{
 		double annuite = montantEmprunte*taux/(1- Math.pow(1+taux, (double)-duree));
-		System.out.println("annuite" + annuite);
-		return Math.abs(annuite - annuiteMaximal) < 10;
+		System.out.println("Le montant emprunté = " + montantEmprunte + " devrait être 15000 annuité = " + annuiteMaximal + " devrait etre: 2955");
+		System.out.println(annuite - annuiteMaximal);
+		return Math.abs(annuite - annuiteMaximal) < 0.5;
 		// return (annuiteMaximal - ((montantEmprunte*taux)/(1- (Math.pow((1+taux), (double)-duree)))) < 0.01 
 		//		&& annuiteMaximal - ((montantEmprunte*taux)/(1- (Math.pow((1+taux), (double)-duree))))*annuiteMaximal > -0.01);
 	}
