@@ -14,7 +14,7 @@ public class CreditTest {
 		assertTrue(c.annuiteMax == c1.annuiteMax && c.duree == c1.duree );*/
 		double taux = 5;
 		double taux1 = 0.05;
-		assertEquals(taux, Credit.calculeTaux(1, 15000, 3250, 6).taux , 2);
+		assertEquals(taux, Credit.calculeTaux(1, 15000, 3250, 6).taux , 0.1);
 		assertEquals(taux1,Credit.calculeTaux(2, 15000, 2955, 6).taux, 0.01);
 	}
 
@@ -30,10 +30,9 @@ public class CreditTest {
 	@Test
 	public void testCalculeMontantEmprunte() {
 		//fail("Not yet implemented");
-		//TODO 
-		//double MontantE = 15000 ;
+		double MontantE = 15000 ;
 		double MontantE2 = 15000;
-		//assertEquals(MontantE, Credit.calculeMontantEmprunte(1, 3250, 5, 6).montantEmprunt,2);
+		assertEquals(MontantE, Credit.calculeMontantEmprunte(1, 3250, 5, 6).montantEmprunt,2);
 		assertEquals(MontantE2, Credit.calculeMontantEmprunte(2, 2955, 0.05, 6).montantEmprunt,2);
 	}
 

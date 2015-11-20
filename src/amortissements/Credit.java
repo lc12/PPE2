@@ -216,7 +216,9 @@ public class Credit
 		}
 		else
 		{
-			montantEmprunte = annuiteMaximale/(1/duree+taux);
+			montantEmprunte = annuiteMaximale/(1.00/duree+taux/100);
+			System.out.println("3250=>"+ annuiteMaximale + " 6=>"+ duree + " 5=>" + taux);
+			System.out.println(1/6+ "=>" + 1/duree);
 		}
 		
 		return new Credit(typeCredit, montantEmprunte, annuiteMaximale, taux, duree);
