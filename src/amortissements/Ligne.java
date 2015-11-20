@@ -62,7 +62,7 @@ public class Ligne
 	public double getAmortissements()
 	{
 		// TODO à compléter.
-		return 0;
+		return amortissements;
 	}
 
 	/**
@@ -72,7 +72,7 @@ public class Ligne
 	public double getAnnuite()
 	{
 		// TODO à compléter.
-		return 0;
+		return annuite;
 	}
 	
 	/**
@@ -83,7 +83,7 @@ public class Ligne
 	public double getCapitalFinal()
 	{
 		// TODO à compléter.
-		return 0;
+		return capitalFinal;
 	}
 	
 	/**

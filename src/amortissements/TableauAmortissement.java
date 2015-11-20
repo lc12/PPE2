@@ -13,6 +13,12 @@ public class TableauAmortissement
 	public TableauAmortissement(Credit credit)
 	{
 		this.tabAmor = new Ligne[credit.duree];
+		Ligne laLigne = Ligne.premiereLigne(credit);
+		tabAmor[0] = laLigne;
+		for (int i=1 ; i < tabAmor.length ; i++)
+		{
+			tabAmor[i] = laLigne.ligneSuivante(credit);
+		}
 	}
 	
 	/**

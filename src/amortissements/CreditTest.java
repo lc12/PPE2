@@ -39,9 +39,9 @@ public class CreditTest {
 	@Test
 	public void testCalculeAnuiteMaximale() {
 		//fail("Not yet implemented");
-		double Annuité = 3250;
+		double Annuite = 3250;
 		//double Annuité2 = 2955;
-		assertEquals(Credit.calculeAnuiteMaximale(1, 15000, 5, 6).annuiteMax,Annuité, 2);
+		assertEquals(Credit.calculeAnuiteMaximale(1, 15000, 5, 6).annuiteMax,Annuite, 2);
 		//assertEquals(Credit.calculeAnuiteMaximale(2, 15000, 5, 6).annuiteMax,Annuité2, 2);
 	}
 
