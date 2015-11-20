@@ -93,8 +93,26 @@ public class Ligne
 	
 	public static Ligne premiereLigne(Credit credit)
 	{
-		// TODO à compléter.
-		return null;
+		Ligne premiereLigne;
+		double amortissement;
+		
+		if (credit.typeCredit == Credit.AMORTISSEMENT_CONSTANTS)
+		{
+			amortissement = credit.montantEmprunt/credit.duree;
+		}
+		else
+		{
+			amortissement = credit.annuiteMax-(credit.montantEmprunt/100*credit.taux);
+		}
+		
+		premiereLigne = new Ligne(1, 
+				credit.montantEmprunt, 
+				credit.taux*credit.montantEmprunt/100,
+				credit.annuiteMax-amortissement,
+				credit.annuiteMax,
+				credit.montantEmprunt-amortissement);
+		
+		return premiereLigne;
 	}
 
 	/**
@@ -105,7 +123,15 @@ public class Ligne
 	
 	public Ligne ligneSuivante(Credit credit)
 	{
-		// TODO à compléter.
-		return null;
+		this.annee++;
+		this.capitalInitial = this.getCapitalFinal();
+		this.interets = credit.taux*this.getCapitalInitial()/100;
+		
+		if (credit.typeCredit == Credit.ANNUITES_CONSTANTES)
+		{
+			this.amortissements = credit.annuiteMax-(this.capitalInitial/100*credit.taux);
+		}
+		
+		return this;
 	}
 }

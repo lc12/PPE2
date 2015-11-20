@@ -48,7 +48,16 @@ public class TableauAmortissement
 	 */
 	
 	public String toString() {
-		// TODO Ã  complÃ©ter.
-		return null;
+		String leTableau ="";
+		
+		for (Ligne ligne : tabAmor) {
+			leTableau += "Année = " + ligne.getAnnee()
+					+ "Capital Initial = " + ligne.getAmortissements()
+					+ "Interet = " + ligne.getInterets()
+					+ "Amortissement = " + ligne.getAmortissements()
+					+ "Anuité = " + ligne.getAnnuite()
+					+ "Capital Final = " + ligne.getCapitalFinal() + "\n";
+		}
+		return leTableau;
 	}
 }

@@ -45,10 +45,5 @@ public class CreditTest {
 		assertEquals(Annuité,Credit.calculeAnuiteMaximale(2, 15000, 0.05, 6).annuiteMax, 0.5);
 	}
 	
-//	@Test
-//	public void tastCalculeTauxDich(){
-//		double taux = 0.05;
-//		assertEquals(taux, Credit.calcAnuitConstanteDichTaux(15000, 2955, 6, 0, 100), 0.001);
-//	}
 
 }
