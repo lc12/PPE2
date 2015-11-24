@@ -117,9 +117,9 @@ public class Credit
 			 double min, double max)
 	{
 		double taux = (min+max)/2;
-		if (!precisionOk(montantEmprunte, annuiteMaximal, duree, taux))
+		if (!precisionOk(montantEmprunte, annuiteMaximal, duree, taux/100))
 		{
-			if (montantEmprunte*taux/(1- Math.pow(1+taux, (double)-duree)) > annuiteMaximal)
+			if (montantEmprunte*(taux/100)/(1- Math.pow(1+taux/100, (double)-duree)) > annuiteMaximal)
 			{
 				return calcAnuitConstanteDichTaux( montantEmprunte, annuiteMaximal, duree , min, taux);
 			}
@@ -175,9 +175,9 @@ public class Credit
 	{
 		int duree = (int)((min+max)/2);
 		System.out.println("duree:"+duree);
-		if (!precisionOk(montantEmprunte, annuiteMaximal, duree, taux))
+		if (!precisionOk(montantEmprunte, annuiteMaximal, duree, taux/100))
 		{
-			if (montantEmprunte*taux/(1- Math.pow(1+taux, (double)-duree)) < annuiteMaximal)
+			if (montantEmprunte*(taux/100)/(1- Math.pow(1+taux/100, (double)-duree)) < annuiteMaximal)
 			{
 				return calcAnuitConstanteDichDuree( montantEmprunte, annuiteMaximal, taux , min, duree);
 			}
@@ -216,9 +216,8 @@ public class Credit
 		}
 		else
 		{
-			montantEmprunte = annuiteMaximale/(1.00/duree+taux/100);
-			System.out.println("3250=>"+ annuiteMaximale + " 6=>"+ duree + " 5=>" + taux);
-			System.out.println(1/6+ "=>" + 1/duree);
+			montantEmprunte = annuiteMaximale/((double)1.00/(double)duree+taux/100);
+			System.out.println(montantEmprunte);
 		}
 		
 		return new Credit(typeCredit, montantEmprunte, annuiteMaximale, taux, duree);
@@ -239,9 +238,9 @@ public class Credit
 	{
 		double montantEmprunte = (min+max)/2;
 		
-		if (!precisionOk(montantEmprunte, annuiteMaximal, duree, taux))
+		if (!precisionOk(montantEmprunte, annuiteMaximal, duree, taux/100))
 		{
-			if (montantEmprunte*taux/(1- Math.pow(1+taux, (double)-duree)) > annuiteMaximal)
+			if (montantEmprunte*(taux/100)/(1- Math.pow(1+taux/100, (double)-duree)) > annuiteMaximal)
 			{
 				return calcAnuitConstanteDichMontant(annuiteMaximal, duree, taux , min, montantEmprunte);
 			}
@@ -268,7 +267,7 @@ public class Credit
 		
 		if (typeCredit == ANNUITES_CONSTANTES)
 		{
-			annuite = montantEmprunte*taux/(1- Math.pow(1+taux, (double)-duree));
+			annuite = montantEmprunte*(taux/100)/(1- Math.pow(1+taux/100, (double)-duree));
 		}
 		else
 		{
@@ -291,11 +290,7 @@ public class Credit
 			double taux)
 	{
 		double annuite = montantEmprunte*taux/(1- Math.pow(1+taux, (double)-duree));
-		System.out.println("Le montant emprunté = " + montantEmprunte + " devrait être 15000 annuité = " + annuiteMaximal + " devrait etre: 2955");
-		System.out.println(annuite - annuiteMaximal);
 		return Math.abs(annuite - annuiteMaximal) < 0.5;
-		// return (annuiteMaximal - ((montantEmprunte*taux)/(1- (Math.pow((1+taux), (double)-duree)))) < 0.01 
-		//		&& annuiteMaximal - ((montantEmprunte*taux)/(1- (Math.pow((1+taux), (double)-duree))))*annuiteMaximal > -0.01);
 	}
 	
 }

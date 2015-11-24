@@ -13,7 +13,7 @@ public class CreditTest {
 		Credit c1 = new Credit(1,100.0,5.0,5,5);
 		assertTrue(c.annuiteMax == c1.annuiteMax && c.duree == c1.duree );*/
 		double taux = 5;
-		double taux1 = 0.05;
+		double taux1 = 5;
 		assertEquals(taux, Credit.calculeTaux(1, 15000, 3250, 6).taux , 0.1);
 		assertEquals(taux1,Credit.calculeTaux(2, 15000, 2955, 6).taux, 0.01);
 	}
@@ -24,7 +24,7 @@ public class CreditTest {
 		int duree = 6;
 		int duree1 = 6;
 		assertEquals(duree, Credit.calculeDuree(1, 15000, 3250, 5).duree, 1);
-		assertEquals(duree1, Credit.calculeDuree(2, 15000, 2955, 0.05).duree, 1);
+		assertEquals(duree1, Credit.calculeDuree(2, 15000, 2955, 5).duree, 1);
 	}
 
 	@Test
@@ -33,7 +33,7 @@ public class CreditTest {
 		double MontantE = 15000 ;
 		double MontantE2 = 15000;
 		assertEquals(MontantE, Credit.calculeMontantEmprunte(1, 3250, 5, 6).montantEmprunt,2);
-		assertEquals(MontantE2, Credit.calculeMontantEmprunte(2, 2955, 0.05, 6).montantEmprunt,2);
+		assertEquals(MontantE2, Credit.calculeMontantEmprunte(2, 2955, 5, 6).montantEmprunt,2);
 	}
 
 	@Test
@@ -42,7 +42,7 @@ public class CreditTest {
 		double Annuite = 3250;
 		double Annuité = 2955;
 		assertEquals(Annuite, Credit.calculeAnuiteMaximale(1, 15000, 5, 6).annuiteMax, 2);
-		assertEquals(Annuité,Credit.calculeAnuiteMaximale(2, 15000, 0.05, 6).annuiteMax, 0.5);
+		assertEquals(Annuité,Credit.calculeAnuiteMaximale(2, 15000, 5, 6).annuiteMax, 0.5);
 	}
 	
 

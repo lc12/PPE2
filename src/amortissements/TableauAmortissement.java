@@ -19,7 +19,7 @@ public class TableauAmortissement
 		
 		for (int i=1 ; i < tabAmor.length ; i++)
 		{
-			tabAmor[i] = laLigne.ligneSuivante(credit);
+			tabAmor[i] = tabAmor[i-1].ligneSuivante(credit);
 		}
 	}
 	
@@ -52,11 +52,11 @@ public class TableauAmortissement
 		
 		for (Ligne ligne : tabAmor) {
 			leTableau += "Année = " + ligne.getAnnee()
-					+ "Capital Initial = " + ligne.getAmortissements()
-					+ "Interet = " + ligne.getInterets()
-					+ "Amortissement = " + ligne.getAmortissements()
-					+ "Anuité = " + ligne.getAnnuite()
-					+ "Capital Final = " + ligne.getCapitalFinal() + "\n";
+					+ " Capital Initial = " + Math.round(ligne.getCapitalInitial())
+					+ " Interet = " + Math.round(ligne.getInterets())
+					+ " Amortissement = " + Math.round(ligne.getAmortissements())
+					+ " Anuité = " + ligne.getAnnuite()
+					+ " Capital Final = " + Math.round(ligne.getCapitalFinal()) + "\n";
 		}
 		return leTableau;
 	}
