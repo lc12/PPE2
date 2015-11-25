@@ -174,7 +174,7 @@ public class Credit
 			double taux, double min, double max)
 	{
 		int duree = (int)((min+max)/2);
-		System.out.println("duree:"+duree);
+		
 		if (!precisionOk(montantEmprunte, annuiteMaximal, duree, taux/100))
 		{
 			if (montantEmprunte*(taux/100)/(1- Math.pow(1+taux/100, (double)-duree)) < annuiteMaximal)

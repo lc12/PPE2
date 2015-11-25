@@ -32,8 +32,8 @@ public class CreditTest {
 		//fail("Not yet implemented");
 		double MontantE = 15000 ;
 		double MontantE2 = 15000;
-		assertEquals(MontantE, Credit.calculeMontantEmprunte(1, 3250, 5, 6).montantEmprunt,2);
-		assertEquals(MontantE2, Credit.calculeMontantEmprunte(2, 2955, 5, 6).montantEmprunt,2);
+		assertEquals(MontantE, Credit.calculeMontantEmprunte(1, 3250, 5, 6).montantEmprunt,1);
+		assertEquals(MontantE2, Credit.calculeMontantEmprunte(2, 2955, 5, 6).montantEmprunt,1);
 	}
 
 	@Test
@@ -41,7 +41,7 @@ public class CreditTest {
 		//fail("Not yet implemented");
 		double Annuite = 3250;
 		double Annuité = 2955;
-		assertEquals(Annuite, Credit.calculeAnuiteMaximale(1, 15000, 5, 6).annuiteMax, 2);
+		assertEquals(Annuite, Credit.calculeAnuiteMaximale(1, 15000, 5, 6).annuiteMax, 0.5);
 		assertEquals(Annuité,Credit.calculeAnuiteMaximale(2, 15000, 5, 6).annuiteMax, 0.5);
 	}
 	

@@ -125,26 +125,21 @@ public class Ligne
 	{
 		int annee = this.annee + 1;
 		double capitalInitial = this.getCapitalFinal();
-		double interets = credit.taux*this.getCapitalInitial()/100;
+		double interets = credit.taux*capitalInitial/100;
 		double amortissements;
 		double annuite;
+		
 		if (credit.typeCredit == Credit.ANNUITES_CONSTANTES)
 		{
-			amortissements = credit.annuiteMax-(this.capitalInitial/100*credit.taux);
+			amortissements = credit.annuiteMax-(capitalInitial/100*credit.taux);
+			annuite = this.annuite;
 		}
 		else
 		{
 			amortissements = this.amortissements;
+			annuite = amortissements + interets;
 		}
 		
-		if (credit.typeCredit == Credit.AMORTISSEMENT_CONSTANTS)
-		{
-			annuite = Math.round(credit.montantEmprunt/(credit.duree)+credit.montantEmprunt/100*credit.taux);
-		}
-		else
-		{
-			annuite = this.annuite;
-		}
 		double capitalFinal = this.getCapitalFinal() - amortissements;
 		
 		return new Ligne(annee, capitalInitial, interets, amortissements, annuite , capitalFinal);

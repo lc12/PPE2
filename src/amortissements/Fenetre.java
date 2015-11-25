@@ -14,7 +14,6 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
-import javax.swing.text.BadLocationException;
 
 @SuppressWarnings("serial")
 public class Fenetre extends JFrame{
@@ -115,6 +114,7 @@ public class Fenetre extends JFrame{
 
 		@Override
 		public void insertUpdate(DocumentEvent e) {
+			
 			if (!textF1.getText().isEmpty())
 				f1 = true;
 			if (!textF2.getText().isEmpty())
@@ -139,7 +139,6 @@ public class Fenetre extends JFrame{
 			if (textF4.getText().isEmpty())
 				f4 = false;
 			
-			System.out.println(f1 +""+ f2 +""+ f3 +""+ f4);
 			checkerLesCases();
 		}
 		
@@ -149,7 +148,6 @@ public class Fenetre extends JFrame{
 	
 	public void checkerLesCases()
 	{
-		System.out.println(f1 +""+ f2 +""+ f3 +""+ f4);
 		boolean nok = (!(f1 && f2 && f3) && !(f2 && f3 && f4) && !(f3 && f4 && f1) && !(f4 && f1 && f2));
 		if (nok)
 		{
@@ -158,7 +156,7 @@ public class Fenetre extends JFrame{
 			textF3.setEnabled(true);
 			textF4.setEnabled(true);
 		}
-		System.out.println(f1 +""+ f2 +""+ f3 +""+ f4);
+
 		if (f1 && f2 && f3)
 			textF4.setEnabled(false);
 		else if (f2 && f3 && f4)
@@ -167,7 +165,6 @@ public class Fenetre extends JFrame{
 			textF2.setEnabled(false);
 		else if (f4 && f1 && f2)
 			textF3.setEnabled(false);
-		System.out.println(f1 +""+ f2 +""+ f3 +""+ f4);
 		
 		if (!nok && (check1.isSelected() || check2.isSelected()) 
 				&& (!f1 || justNumber(textF1.getText()))
@@ -228,7 +225,6 @@ public class Fenetre extends JFrame{
 				unCredit = Credit.calculeAnuiteMaximale(check1.isSelected() ? 2 : 1, Double.parseDouble(textF1.getText()), Double.parseDouble(textF2.getText()), Integer.parseInt(textF4.getText()));
 			
 			TableauAmortissement unTableau = new TableauAmortissement(unCredit);
-			System.out.println(unTableau.toString());
 			FenetrePret uneFen = new FenetrePret(unTableau);
 		}
 	}
