@@ -129,7 +129,7 @@ public class Fenetre extends JFrame{
 
 		@Override
 		public void removeUpdate(DocumentEvent e) {
-			System.out.println("A remove have been done");
+
 			if (textF1.getText().isEmpty())
 				f1 = false;
 			if (textF2.getText().isEmpty())
@@ -192,8 +192,6 @@ public class Fenetre extends JFrame{
 				}
 			}
 			checkerLesCases();
-			
-			System.out.println("source : " + ((JCheckBox)e.getSource()).getText() + " - état : " + ((JCheckBox)e.getSource()).isSelected());
 		}
 	}
 	
