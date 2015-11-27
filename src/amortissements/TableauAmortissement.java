@@ -19,6 +19,7 @@ public class TableauAmortissement
 		
 		for (int i=1 ; i < tabAmor.length ; i++)
 		{
+			
 			tabAmor[i] = tabAmor[i-1].ligneSuivante(credit);
 		}
 	}

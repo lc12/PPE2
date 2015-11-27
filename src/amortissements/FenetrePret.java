@@ -15,8 +15,6 @@ public class FenetrePret extends JFrame{
 	{
 		tabGraph= new Object[unTab.getNbLignes()][6];
 		this.setTitle("Pret");
-		
-		this.setResizable(true);
 		this.setLocationRelativeTo(null);
 		
 		String[] entetes = {"Année", "Capital Initial", "Interet", "Amortissement", "Anuité", "Capital Final"};
@@ -50,7 +48,9 @@ public class FenetrePret extends JFrame{
 		}
 		
 		JTable tableau = new JTable(tabGraph, entetes);
-		this.setSize(600,(int)(tableau.getRowHeight()*tableau.getRowCount()+58));
+		tableau.setEnabled(false);
+		this.setSize(600,(int)(tableau.getRowHeight()*tableau.getRowCount()+48));
+		this.setResizable(false);
 		container.add(tableau.getTableHeader(), BorderLayout.NORTH);
         container.add(tableau, BorderLayout.CENTER);
         this.setContentPane(container);
