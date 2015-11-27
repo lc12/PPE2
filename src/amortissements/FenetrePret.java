@@ -5,6 +5,7 @@ import java.awt.BorderLayout;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTable;
+import javax.swing.JButton;
 
 @SuppressWarnings("serial")
 public class FenetrePret extends JFrame{
@@ -14,6 +15,7 @@ public class FenetrePret extends JFrame{
 	public FenetrePret(TableauAmortissement unTab)
 	{
 		tabGraph= new Object[unTab.getNbLignes()][6];
+		JButton boutonHelp = new JButton("Help");
 		this.setTitle("Pret");
 		this.setLocationRelativeTo(null);
 		
