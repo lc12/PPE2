@@ -32,8 +32,8 @@ public class CreditTest {
 		//fail("Not yet implemented");
 		double MontantE = 15000 ;
 		double MontantE2 = 15000;
-		assertEquals(MontantE, Credit.calculeMontantEmprunte(1, 3250, 5, 6).montantEmprunt,1);
-		assertEquals(MontantE2, Credit.calculeMontantEmprunte(2, 2955, 5, 6).montantEmprunt,1);
+		assertEquals(MontantE, Credit.calculeMontantEmprunte(1, 3250, 5, 6).montantEmprunt,1.5);
+		assertEquals(MontantE2, Credit.calculeMontantEmprunte(2, 2955, 5, 6).montantEmprunt,1.5);
 	}
 
 	@Test

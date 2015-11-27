@@ -19,8 +19,12 @@ public class TableauAmortissement
 		
 		for (int i=1 ; i < tabAmor.length ; i++)
 		{
-			
 			tabAmor[i] = tabAmor[i-1].ligneSuivante(credit);
+			
+			if (i == tabAmor.length-1 && tabAmor[i].capitalFinal != 0.00 ) {
+				tabAmor[i].annuite += tabAmor[i].capitalFinal;
+				tabAmor[i].capitalFinal = 0;
+			}
 		}
 	}
 	

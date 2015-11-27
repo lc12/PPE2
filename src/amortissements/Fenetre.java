@@ -1,10 +1,16 @@
 package amortissements;
 
+import java.awt.Desktop;
+import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener; 
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.io.File;
+import java.io.IOException;
 
 import javax.swing.JCheckBox;
 import javax.swing.JFrame;
@@ -17,7 +23,7 @@ import javax.swing.event.DocumentListener;
 
 @SuppressWarnings("serial")
 public class Fenetre extends JFrame{
-	boolean f1,f2,f3,f4 = false;
+	private boolean f1,f2,f3,f4 = false;
 	private JPanel container = new JPanel(new GridBagLayout());
 	private JCheckBox check1 = new JCheckBox("Annuité Constante");
 	private JCheckBox check2 = new JCheckBox("Amortissement Constant");
@@ -30,9 +36,14 @@ public class Fenetre extends JFrame{
 	private JLabel lab3 = new JLabel("AnuiteMax :");
 	private JTextField textF4 = new JTextField(10);
 	private JLabel lab4 = new JLabel("Durée :");
+	private JLabel help = new JLabel("?");
 	
 	public Fenetre(){
+		Dimension dim = new Dimension(5,5);
+		help.setMaximumSize(dim);
 		bouton.setEnabled(false);
+		help.setForeground(new Color(27, 30 , 130));
+		help.addMouseListener(new MouseListenerLabel());
 		this.setTitle("Amortissement");
 		this.setSize(450,200);
 		this.setResizable(false);
@@ -73,10 +84,13 @@ public class Fenetre extends JFrame{
 		c1.gridx += 1;
 		c1.gridwidth = 2;
 		container.add(textF4, c1);
-		c1.gridx = 0;
-		c1.gridwidth = 6;
+		c1.gridx = 2;
+		c1.gridwidth = 3;
 		c1.gridy = 3;
 		container.add(bouton, c1);
+		c1.gridwidth = 1;
+		c1.gridx = 5;
+		container.add(help, c1);
 		check1.addActionListener(new CheckBoxListener());
 		check2.addActionListener(new CheckBoxListener());
 		textF1.addActionListener(new TextFieldListener());
@@ -102,6 +116,46 @@ public class Fenetre extends JFrame{
 	    catch( Exception e )
 	    { ret = false ; }      //tiens une erreur 
 	     return ret ;
+	}
+	
+	class MouseListenerLabel implements MouseListener
+	{
+		@Override
+		public void mouseEntered(MouseEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void mouseExited(MouseEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void mousePressed(MouseEvent e) {
+			try {
+				//Desktop.getDesktop().open(new File("C:/Users/Maxime/git/PPE2/src/amortissements/NoticeUtilisateur.pdf"));
+				Desktop.getDesktop().open(new File("NoticeUtilisateur.pdf"));
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			
+			
+		}
+
+		@Override
+		public void mouseReleased(MouseEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void mouseClicked(MouseEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
 	}
 	
 	class TextDocListener implements DocumentListener{
@@ -223,7 +277,19 @@ public class Fenetre extends JFrame{
 				unCredit = Credit.calculeAnuiteMaximale(check1.isSelected() ? 2 : 1, Double.parseDouble(textF1.getText()), Double.parseDouble(textF2.getText()), Integer.parseInt(textF4.getText()));
 			
 			TableauAmortissement unTableau = new TableauAmortissement(unCredit);
-			FenetrePret uneFen = new FenetrePret(unTableau);
+			String info = new String(" Le credit est d'un montant de : " + Math.round(unCredit.montantEmprunt)
+					+ " un taux de : " + (double)Math.round(unCredit.taux*10)/10 +"%. "
+					+ "Le total des interets s'élève à : " + calcTotInterets(unTableau) +".");
+			FenetrePret uneFen = new FenetrePret(unTableau, info);
+		}
+		
+		private String calcTotInterets(TableauAmortissement unTab)
+		{
+			int tot = 0;
+			for (Ligne laLigne : unTab.tabAmor) {
+				tot += laLigne.interets;
+			}
+			return Integer.toString(tot);
 		}
 	}
 }

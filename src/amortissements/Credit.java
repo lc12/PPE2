@@ -150,7 +150,7 @@ public class Credit
 		int duree;
 		if (typeCredit == ANNUITES_CONSTANTES)
 		{
-			duree = calcAnuitConstanteDichDuree(montantEmprunte, annuiteMaximale, taux, 0, 80);
+			duree = (int)calcAnuitConstanteDichDuree(montantEmprunte, annuiteMaximale, taux, 0, 80);
 		}
 		else
 		{
@@ -170,10 +170,10 @@ public class Credit
 	 * @param max
 	 * @return la duree
 	 */
-	private static int calcAnuitConstanteDichDuree(double montantEmprunte, double annuiteMaximal, 
+	private static double calcAnuitConstanteDichDuree(double montantEmprunte, double annuiteMaximal, 
 			double taux, double min, double max)
 	{
-		int duree = (int)((min+max)/2);
+		double duree = (min+max)/2;
 		
 		if (!precisionOk(montantEmprunte, annuiteMaximal, duree, taux/100))
 		{
@@ -186,7 +186,7 @@ public class Credit
 				return calcAnuitConstanteDichDuree( montantEmprunte, annuiteMaximal, taux, duree, max);
 			}
 		}
-		else
+	 	else
 		{
 			return duree;
 		}
@@ -238,7 +238,7 @@ public class Credit
 	{
 		double montantEmprunte = (min+max)/2;
 		
-		if (!precisionOk(montantEmprunte, annuiteMaximal, duree, taux/100))
+		if (!precisionOk(montantEmprunte, annuiteMaximal, (double)duree, taux/100))
 		{
 			if (montantEmprunte*(taux/100)/(1- Math.pow(1+taux/100, (double)-duree)) > annuiteMaximal)
 			{
@@ -286,11 +286,11 @@ public class Credit
 	 * @param taux
 	 * @return Un boolean true si la precision est ok sinon false
 	 */
-	private static boolean precisionOk(double montantEmprunte, double annuiteMaximal, int duree, 
+	private static boolean precisionOk(double montantEmprunte, double annuiteMaximal, double duree, 
 			double taux)
 	{
 		double annuite = montantEmprunte*taux/(1- Math.pow(1+taux, (double)-duree));
-		return Math.abs(annuite - annuiteMaximal) < 0.5;
+		return Math.abs(annuite - annuiteMaximal) < 0.00001;
 	}
 	
 }

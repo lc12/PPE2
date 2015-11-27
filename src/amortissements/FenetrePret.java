@@ -3,22 +3,22 @@ package amortissements;
 import java.awt.BorderLayout;
 
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTable;
-import javax.swing.JButton;
 
 @SuppressWarnings("serial")
 public class FenetrePret extends JFrame{
 
 	Object[][] tabGraph;
 	private JPanel container = new JPanel(new BorderLayout());
-	public FenetrePret(TableauAmortissement unTab)
+	private JLabel infoLab = new JLabel();
+	public FenetrePret(TableauAmortissement unTab, String info)
 	{
+		infoLab.setText(info);
 		tabGraph= new Object[unTab.getNbLignes()][6];
-		JButton boutonHelp = new JButton("Help");
 		this.setTitle("Pret");
 		this.setLocationRelativeTo(null);
-		
 		String[] entetes = {"Année", "Capital Initial", "Interet", "Amortissement", "Anuité", "Capital Final"};
 		
 		for (int i = 0; i < unTab.getNbLignes(); i++) {
@@ -51,10 +51,11 @@ public class FenetrePret extends JFrame{
 		
 		JTable tableau = new JTable(tabGraph, entetes);
 		tableau.setEnabled(false);
-		this.setSize(600,(int)(tableau.getRowHeight()*tableau.getRowCount()+48));
+		this.setSize(600,(int)(tableau.getRowHeight()*tableau.getRowCount()+65));
 		this.setResizable(false);
-		container.add(tableau.getTableHeader(), BorderLayout.NORTH);
-        container.add(tableau, BorderLayout.CENTER);
+		container.add(tableau.getTableHeader(), BorderLayout.CENTER);
+        container.add(tableau, BorderLayout.SOUTH);
+        container.add(infoLab, BorderLayout.NORTH);
         this.setContentPane(container);
 		this.setVisible(true);
 	}
