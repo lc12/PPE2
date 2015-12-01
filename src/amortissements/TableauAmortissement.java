@@ -8,7 +8,7 @@ public class TableauAmortissement
 {
 	Ligne[] tabAmor;
 	/**
-	 * Crée le tableau d'amortissement du crédit passé en paramètre.
+	 * Crï¿½e le tableau d'amortissement du crï¿½dit passï¿½ en paramï¿½tre.
 	 */
 	
 	public TableauAmortissement(Credit credit)
@@ -56,11 +56,11 @@ public class TableauAmortissement
 		String leTableau ="";
 		
 		for (Ligne ligne : tabAmor) {
-			leTableau += "Année = " + ligne.getAnnee()
+			leTableau += "Annee = " + ligne.getAnnee()
 					+ " Capital Initial = " + Math.round(ligne.getCapitalInitial())
 					+ " Interet = " + Math.round(ligne.getInterets())
 					+ " Amortissement = " + Math.round(ligne.getAmortissements())
-					+ " Anuité = " + ligne.getAnnuite()
+					+ " Annuite = " + ligne.getAnnuite()
 					+ " Capital Final = " + Math.round(ligne.getCapitalFinal()) + "\n";
 		}
 		return leTableau;
