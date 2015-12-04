@@ -102,11 +102,11 @@ public class Fenetre extends JFrame{
 	    boolean ret = false ;
 	    try{
 	           Double.parseDouble(s);
-	           ret = true ;     //tout c'est bien passé
+	           ret = true;     //tout s'est bien passé
 	     }
 	    catch( Exception e )
-	    { ret = false ; }      //tiens une erreur 
-	     return ret ;
+	    { ret = false; }      //tiens une erreur 
+	     return ret;
 	}
 	
 	class MouseListenerLabel implements MouseListener
@@ -213,7 +213,9 @@ public class Fenetre extends JFrame{
 				&& (!f1 || justNumber(textF1.getText()))
 				&& (!f2 || justNumber(textF2.getText())) 
 				&& (!f3 || justNumber(textF3.getText()))
-				&& (!f4 || justNumber(textF4.getText())))
+				&& (!f4 || justNumber(textF4.getText()))
+				&& (!(f3 && f4 && f1) || (f3 && f4 && f1 
+				&& Double.parseDouble(textF3.getText()) <= Double.parseDouble(textF1.getText())/Double.parseDouble(textF4.getText()))))
 			bouton.setEnabled(true);
 		else
 			bouton.setEnabled(false);
